@@ -2,7 +2,8 @@ This is a ROS1 workspace to the object fusion algorithm based on Aeberhard (2017
 
 
 This work is a simplified implementation of the proposed fusion architecture below.
-![Aeberhard proposed Fusion Architecture](imgs/aeberhard_fusion_level.png)
+![alt text](imgs/aeberhard_fusion_level.png)
+Aeberhard proposed Fusion Architecture(Aeberhard(2017))
 
 
 Install dependencies:
@@ -29,7 +30,7 @@ Visualize the output data (fused object markers) in RVIZ with:
 	year = 2022,
 	month = {},
 	publisher = {},
-	author = {Yuri Poledna and Fabio Reway and Redge Castelino and Maikol Dreschler and Shashank Harthi},
+	author = {Yuri Poledna and Fabio Reway and Redge Castelino and Maikol Drechsler and Shashank Harthi},
 	title = {Placeholding},
 	booktitle = {Placeholding for now}
 }
