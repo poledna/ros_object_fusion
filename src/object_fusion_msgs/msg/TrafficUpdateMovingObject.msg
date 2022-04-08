@@ -1,0 +1,2 @@
+Header header
+object_fusion_msgs/Moving_Object object

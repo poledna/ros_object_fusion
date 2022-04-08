@@ -1,0 +1,2 @@
+from .cross_covariance_fusion import cross_covariance_recursion_fusion
+from .information_matrix_fusion import information_matrix_fusion

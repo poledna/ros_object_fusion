@@ -1,0 +1,3 @@
+Header header
+object_fusion_msgs/Detected_Object[] obj_list
+object_fusion_msgs/SensorProperty sensor_property
