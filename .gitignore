@@ -12,7 +12,7 @@ matlab_msg_gen_ros1/
 *.jpg
 *.bin
 *.pcd
-*.png
+
 *.csv
 *.bag
 *.json

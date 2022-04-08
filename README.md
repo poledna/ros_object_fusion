@@ -2,28 +2,36 @@ This is a ROS1 workspace to the object fusion algorithm based on Aeberhard (2017
 
 
 This work is a simplified implementation of the proposed fusion architecture below.
-![alt text](imgs/aeberhard_fusion_level.png)
-Aeberhard proposed Fusion Architecture(Aeberhard(2017))
+![Aeberhard proposed Fusion Architecture(Aeberhard(2017))](imgs/aeberhard_fusion_level.png)
+
 
 
 Install dependencies:
 
-```pip install numpy==1.21.2 rospkg==1.3.0 scipy==1.7.1```
+```bash
+pip install numpy==1.21.2 rospkg==1.3.0 scipy==1.7.1
+```
 
 Compile the workspace
 
-```catkin build```
+```bash
+catkin build
+```
 
 Execute the code with:
 
-```rosrun object_fusion fusion.py```
+```bash
+rosrun object_fusion fusion.py
+```
 
 Visualize the output data (fused object markers) in RVIZ with:
 
-```rosrun object_fusion visualization_fusion.py``` 
+```bash
+rosrun object_fusion visualization_fusion.py
+``` 
 
 (TO DO:)In case you use this code, please cite it with: 
-
+```
 @inproceedings{Poledna2022,
 	doi = {10.1109/PlaceHolding},
 	url = {},
@@ -34,3 +42,4 @@ Visualize the output data (fused object markers) in RVIZ with:
 	title = {Placeholding},
 	booktitle = {Placeholding for now}
 }
+```
