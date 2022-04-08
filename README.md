@@ -30,6 +30,15 @@ Visualize the output data (fused object markers) in RVIZ with:
 rosrun object_fusion visualization_fusion.py
 ``` 
 
+The fusion input in this example uses two subscribers, but it is not limited to those listes, any sensor with the same ROS1 message is accepted. The subscriber can be found in the [fusion.py file](src/object_fusion/src/fusion.py) as seen below.
+
+```python
+    camera_subscriber = rospy.Subscriber("/fusion/input/sensors/camera", Object_List, callback_handler.callback)
+    radar_subscriber  = rospy.Subscriber("/fusion/input/sensors/radar" , Object_List, callback_handler.callback)    
+
+```
+
+
 (TO DO:)In case you use this code, please cite it with: 
 ```
 @inproceedings{Poledna2022,
