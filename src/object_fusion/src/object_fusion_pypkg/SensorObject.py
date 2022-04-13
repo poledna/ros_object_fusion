@@ -132,11 +132,3 @@ class SensorObject:
                                                 self.mass_vru, self.mass_traffic, self.mass_vehicle_stationary,
                                                 self.mass_vru_stationary, self.mass_ignorance]
         self.list_classification_mass_factor = [1 if i > 1 else i for i in self.list_classification_mass_factor]
-
-        #print("mass vehicle",self.mass_vehicle)
-        #print("mass vru",self.mass_vru)
-        #print("mass traffic",self.mass_traffic)
-        #print("mass veh station",self.mass_vehicle_stationary)
-        #print("mass vru station",self.mass_vru_stationary)
-        #print("mass  ignorance",self.mass_ignorance)
-

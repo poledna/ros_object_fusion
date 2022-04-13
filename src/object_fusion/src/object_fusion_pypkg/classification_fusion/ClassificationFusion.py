@@ -151,8 +151,6 @@ class ClassificationFusion:
                     sum_intersection_null = sum_intersection_null + (
                                 sensor_classification_mass_factors[row] * global_classification_mass_factors[column])
 
-        #if sum_intersection_null ==0:
-        #    sum_intersection_null=0.1
         self.fused_mass_factor_car = (sum_intersection_car) / (1 - sum_intersection_null)
         self.fused_mass_factor_truck = (sum_intersection_truck) / (1 - sum_intersection_null)
         self.fused_mass_factor_motorcycle = (sum_intersection_motorcycle) / (1 - sum_intersection_null)

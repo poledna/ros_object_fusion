@@ -24,12 +24,9 @@ from scipy.spatial import distance as di
 def align_list(track,egoveh,t):
     "function to perform temporal alignment/prediction of objects_list"
     "Returns objects list with state vector predicted to current time"
-    #global now
     now = rospy.Time.now()
     for i, object_index in enumerate(track):
         obj = track[object_index].current_fused_object
-        # print(obj)
-        #t = float(now.to_sec()) - float(obj.time)
 
         yaw = egoveh.yawrate * t
 
@@ -61,20 +58,12 @@ def align_list(track,egoveh,t):
 
         eta_s = np.array([[10],[0],[10] ,[0]])
         id = np.zeros((6, 6))
-        np.fill_diagonal(id, 20) # rospy.get_param("Fusion_process_noise")
+        np.fill_diagonal(id, 20) # fusion process noise = 20
         covariance = np.reshape(obj.covariance,(6,6))
         predicted_state = a.dot(state) + b.dot(u)
-        predicted_covariance = (a.dot(covariance)).dot(a.transpose())+ id #+g.dot(eta_s)#+(g.dot(c_s)).dot(g.transpose())
-        #print('COV',obj.obj_id,predicted_covariance,)
+        predicted_covariance = (a.dot(covariance)).dot(a.transpose())+ id
+
         obj.covariance = predicted_covariance.flatten()
-        #obj.geometric.x = float(predicted_state[0])
-        #obj.geometric.vx = float(predicted_state[1])
-        #obj.geometric.ax = float(predicted_state[2])
-
-        #obj.geometric.y = float(predicted_state[3])
-        #obj.geometric.vy = float(predicted_state[4])
-        #obj.geometric.ay = float(predicted_state[5])
-
 
     return track
 
