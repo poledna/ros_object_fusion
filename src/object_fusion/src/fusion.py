@@ -26,7 +26,7 @@ from object_fusion_pypkg.Callback_Handler import Callback_Handler
 def main():
     rospy.init_node("object_fusion")
 
-    object_fusion  = Fusion()
+    object_fusion  = Fusion(mahalanobis_distance_threshold = 15)
 
     publisher_fused_data    = rospy.Publisher('/fusion/output', Object_List, queue_size=10)
 

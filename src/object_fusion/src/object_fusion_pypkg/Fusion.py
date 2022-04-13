@@ -25,13 +25,13 @@ import sys
 from time import time
 
 class Fusion:
-    def __init__(self):
+    def __init__(self,mahalanobis_distance_threshold):
         self.egoveh = ego_state.Ego()  # consists of updated ego parameters
 
         self.globaltrack = track.Global_Track()
 
         self.sensors = {}   # list of sensor objectlists
-
+        self.mahalanobis_distance_threshold = mahalanobis_distance_threshold
         self.cost_matrix_A = None
         self.cost_matrix_B = None
         self.cost_matrix = None
@@ -184,8 +184,7 @@ class Fusion:
         self.create_association_matrix(shape_association_matrix)
         self.create_cost_matrix_A(shape_cost_matrix)
         self.create_threshold_matrix(threshold_matrix_shape)
-        threshold = 15
-        self.create_cost_matrix_B(cost_matrix_b_shape, threshold)
+        self.create_cost_matrix_B(cost_matrix_b_shape, self.mahalanobis_distance_threshold)
 
         cost_matrix = self.create_cost_matrix(sensor_updated)
 
