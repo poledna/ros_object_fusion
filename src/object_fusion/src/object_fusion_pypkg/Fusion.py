@@ -307,7 +307,7 @@ class Fusion:
             self.globaltrack.tracked_objects.pop(popping_index)
 
     def fusion_if_already_in_global_and_sensor_track(self, globaltrack_predicted,
-                                                     sensor_object,  # predict_obj
+                                                     sensor_object,  
                                                      sensor_trust,
                                                      sensor_property,
                                                      object_fusion_id):

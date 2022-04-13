@@ -27,7 +27,7 @@ def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
     global_state_matrix = np.array([[float(glob_pred_obj.geometric.x)], [float(glob_pred_obj.geometric.vx)],
                                    [float(glob_pred_obj.geometric.ax)], [float(glob_pred_obj.geometric.y)],
                                    [float(glob_pred_obj.geometric.vy)], [float(glob_pred_obj.geometric.ay)]])
-    global_cvarience_matrix = np.reshape(glob_pred_obj.covariance, (6, 6))
+    global_covarience_matrix = np.reshape(glob_pred_obj.covariance, (6, 6))
 
     sensor_state_matrix = np.array([[float(predict_obj.geometric.x)], [float(predict_obj.geometric.vx)],
                                     [float(predict_obj.geometric.ax)],
@@ -35,7 +35,7 @@ def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
                                     [float(predict_obj.geometric.ay)]])
     sensor_covarience_matrix = np.reshape(predict_obj.covariance, (6, 6))
 
-    global_covariance_inv = np.linalg.pinv(global_cvarience_matrix)
+    global_covariance_inv = np.linalg.pinv(global_covarience_matrix)
     sensor_covariance_inv = np.linalg.pinv(sensor_covarience_matrix)
 
 
@@ -44,8 +44,6 @@ def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
 
     fused_state_matrix = fused_covarience_matrix.dot(
         (global_covariance_inv.dot(global_state_matrix)) + (sensor_covariance_inv.dot(sensor_state_matrix)))
-    #print("global", global_state_matrix, "sensor", sensor_state_matrix, "fused", fused_state_matrix)
-
 
     return [Geometric(x  = float(fused_state_matrix[0]),
                       vx = float(fused_state_matrix[1]),
