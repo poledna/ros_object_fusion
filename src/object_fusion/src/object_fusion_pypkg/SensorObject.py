@@ -26,7 +26,7 @@ class SensorObject:
         self.sensor_trust = sensor_property.trust_existance
         self.existance_probability = obj.prop_existence
         self.persistance_probability = obj.prop_persistance
-        self.classification_vector = [obj.classification.car, obj.classification.truck, obj.classification.motorcycle, obj.classification.bicycle, obj.classification.pedestrian, obj.classification.stacionary, obj.classification.other]
+        self.classification_vector = [obj.classification.car, obj.classification.truck, obj.classification.motorcycle, obj.classification.bicycle, obj.classification.pedestrian, obj.classification.stationary, obj.classification.other]
 
         if (np.sqrt(np.square(obj.geometric.vx) + np.square(obj.geometric.vy)) > 0  and np.sqrt(np.square(obj.geometric.vx) + np.square(obj.geometric.vy)) < 1):
             self.probability_object_moved = 0.3

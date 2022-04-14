@@ -93,4 +93,32 @@ class Fused_Object(object):
         self.fusing_participants = fusing_participants
 
 
-        pass
+    def set_existance_probability_mass_factors(self,sensor_trust):
+        """
+        Method to set the new existence probability mass factors after fusion.
+
+        :param sensor_trust
+        """
+        print(type(self.current_fused_object))
+        self.current_fused_object.classification_mass.mass_existance    = (self.current_fused_object.classification_mass.persistance_probability * float(sensor_trust) * self.current_fused_object.classification_mass.existance_probability)
+        self.current_fused_object.classification_mass.mass_nonexistance = (self.current_fused_object.classification_mass.persistance_probability * float(sensor_trust) * (1 - self.current_fused_object.classification_mass.existance_probability))
+        self.current_fused_object.classification_mass.mass_uncertainity = (1 - (float(self.current_fused_object.classification_mass.mass_existance) + float(self.current_fused_object.classification_mass.mass_nonexistance)))
+
+        self.current_fused_object.classification_mass.list_existance_mass_factor = [self.current_fused_object.classification_mass.mass_existance, self.current_fused_object.classification_mass.mass_nonexistance, self.current_fused_object.classification_mass.mass_uncertainity]
+
+    def existance_mass_prediction(self,prediction_weight):
+        """
+        Method to predict the existence mass factors for existence probability.
+
+        :param prediction_weight: Defined in the fusion configuration.
+        """
+        global_object_mass_existance = float(self.current_fused_object.classification_mass.mass_existance)
+        global_object_mass_nonexistance = float(self.current_fused_object.classification_mass.mass_nonexistance)
+        global_object_mass_uncertainity = float(self.current_fused_object.classification_mass.mass_uncertainity)
+        prediction_weight = float(prediction_weight)
+
+        self.current_fused_object.classification_mass.global_predicted_mass_existance = ((1 - prediction_weight) * global_object_mass_existance)
+        self.current_fused_object.classification_mass.global_predicted_mass_nonexistance = ((1 - prediction_weight) * global_object_mass_nonexistance)
+        self.current_fused_object.classification_mass.global_predicted_mass_uncertainity = ((global_object_mass_uncertainity) + (prediction_weight * (global_object_mass_existance + global_object_mass_nonexistance)))
+        self.current_fused_object.classification_mass.global_predicted_masslist = [self.current_fused_object.classification_mass.global_predicted_mass_existance , self.current_fused_object.classification_mass.global_predicted_mass_nonexistance , self.current_fused_object.classification_mass.global_predicted_mass_uncertainity]
+

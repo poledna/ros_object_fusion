@@ -20,6 +20,15 @@ class ClassificationMass():
         self.mass_nonexistance = None
         self.mass_uncertainity = None
 
+        self.list_existance_mass_factor = []
+        
+        self.fused_probability_existance = None
+        self.fused_probability_nonexistance = None
+        self.global_predicted_mass_existance = None
+        self.global_predicted_mass_nonexistance = None
+        self.global_predicted_mass_uncertainity = None
+        self.global_predicted_masslist = None
+
     def to_ros_msg(self):
         return [self.mass_car,
                 self.mass_truck,
@@ -33,5 +42,3 @@ class ClassificationMass():
                 self.mass_vehicle_stationary,
                 self.mass_vru_stationary,
                 self.mass_ignorance]
-
-        

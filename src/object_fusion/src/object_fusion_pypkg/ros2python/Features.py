@@ -10,7 +10,7 @@ uint8 RR
 uint8 RM
 uint8 RL
 uint8 ML"""
-    def __init__(self,FL,FM,FR,MR,RR,RM,RL,ML):
+    def __init__(self,FL=0,FM=0,FR=0,MR=0,RR=0,RM=0,RL=0,ML=0):
         super(Features, self).__init__()
         self.FL = FL
         self.FM = FM
@@ -31,15 +31,16 @@ uint8 ML"""
                                                RL = self.RL,
                                                ML = self.ML)
 
-    def from_ros_message(self, ros_msg_data):
-        super(Objects, self).__init__(FL = ros_msg_data.FL,
-                                      FM = ros_msg_data.FM,
-                                      FR = ros_msg_data.FR,
-                                      MR = ros_msg_data.MR,
-                                      RR = ros_msg_data.RR,
-                                      RM = ros_msg_data.RM,
-                                      RL = ros_msg_data.RL,
-                                      ML = ros_msg_data.ML)
+    def from_ros_message(self,ros_msg_data):
+        self.FL = ros_msg_data.FL
+        self.FM = ros_msg_data.FM
+        self.FR = ros_msg_data.FR
+        self.MR = ros_msg_data.MR
+        self.RR = ros_msg_data.RR
+        self.RM = ros_msg_data.RM
+        self.RL = ros_msg_data.RL
+        self.ML = ros_msg_data.ML
+        
         return self
 
         pass

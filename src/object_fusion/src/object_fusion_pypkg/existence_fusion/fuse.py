@@ -37,8 +37,8 @@ def fuse(sensor_object,global_object):
 
     :return: fused_probability_existance
     """
-    sensor_existance_mass_factors = (sensor_object.list_existance_mass_factor) # need to determine
-    global_existance_mass_factors = (global_object.global_predicted_masslist) # need to determine
+    sensor_existance_mass_factors = (sensor_object.classification_mass.list_existance_mass_factor) # need to determine
+    global_existance_mass_factors = (global_object.classification_mass.global_predicted_masslist) # need to determine
     
 
     fused_mass_factor_existance, fused_mass_factor_nonexistance, fused_mass_factor_uncertainity = get_fused_mass_factors(sensor_object,global_object)
@@ -57,8 +57,8 @@ def get_fused_mass_factors(sensor_object,global_object):
 
     :return: fused_mass_factor_existance, fused_mass_factor_nonexistance, fused_mass_factor_uncertainity
     """
-    sensor_existance_mass_factors = (sensor_object.list_existance_mass_factor)  # need to determine
-    global_existance_mass_factors = (global_object.global_predicted_masslist)  # need to determine
+    sensor_existance_mass_factors = (sensor_object.classification_mass.list_existance_mass_factor)  # need to determine
+    global_existance_mass_factors = (global_object.classification_mass.global_predicted_masslist)  # need to determine
 
     sum_intersection_existance = 0
     sum_intersection_nonexistance = 0

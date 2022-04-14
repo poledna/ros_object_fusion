@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from object_fusion_msgs.msg import Classification
+from ..ros2python.Classification import Classification
 
 class ClassificationFusion:
     """
@@ -81,8 +81,8 @@ class ClassificationFusion:
         Updates the clssification fusion results in the class object.
 
         """
-        sensor_classification_mass_factors = (self.sensor_object.list_classification_mass_factor)
-        global_classification_mass_factors = (self.global_object.list_classification_mass_factor)
+        sensor_classification_mass_factors = (self.sensor_object.classification_mass.list_classification_mass_factor)
+        global_classification_mass_factors = (self.global_object.classification_mass.list_classification_mass_factor)
 
         sum_intersection_car = 0
         sum_intersection_truck = 0

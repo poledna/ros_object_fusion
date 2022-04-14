@@ -2,7 +2,7 @@ import object_fusion_msgs.msg
 
 class Dimension(object):
     """Dimension is a struct to hold Dimension Data."""
-    def __init__(self,length,width,length_variance,width_variance):
+    def __init__(self,length=0,width=0,length_variance=0,width_variance=0):
         super(Dimension, self).__init__()
         self.length = length
         self.width = width
@@ -16,10 +16,10 @@ class Dimension(object):
                                                 width_variance  = self.width_variance)
 
     def from_ros_message(self, ros_msg_data):  
-        super(Objects, self).__init__(length          = ros_msg_data.length,
-                                      width           = ros_msg_data.width,
-                                      length_variance = ros_msg_data.length_variance,
-                                      width_variance  = ros_msg_data.width_variance)
+        self.length          = ros_msg_data.length
+        self.width           = ros_msg_data.width
+        self.length_variance = ros_msg_data.length_variance
+        self.width_variance  = ros_msg_data.width_variance
         return self
 
         pass

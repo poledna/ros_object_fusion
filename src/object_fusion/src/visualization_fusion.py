@@ -21,7 +21,7 @@ import rospy
 import math
 import message_filters
 
-from object_list.msg import ObjectList, ObjectsList
+from object_fusion_msgs.msg import  Object_List
 from visualization_msgs.msg import Marker, MarkerArray
 
 def callback(data,publisher):
@@ -79,7 +79,7 @@ def callback(data,publisher):
 def main():
     rospy.init_node("vis_node")
     publisher = rospy.Publisher("/fusion/output/marker", MarkerArray,queue_size = 10)
-    rospy.Subscriber("/fusion/output",ObjectsList,callback,(publisher))
+    rospy.Subscriber("/fusion/output",Object_List,callback,(publisher))
     rospy.spin()
     pass
 

@@ -2,7 +2,7 @@ import object_fusion_msgs.msg
 
 class Classification(object):
     """Classification is a struct to hold Classification Data."""
-    def __init__(self,car,truck,motorcycle,bicycle,pedestrian,stationary,other):
+    def __init__(self,car=0,truck=0,motorcycle=0,bicycle=0,pedestrian=0,stationary=0,other=0):
         super(Classification, self).__init__()
         self.car = car
         self.truck = truck
@@ -23,13 +23,13 @@ class Classification(object):
         pass
 
     def from_ros_message(self, ros_msg_data):
-        super(Objects, self).__init__(car        = ros_msg_data.car,
-                                      truck      = ros_msg_data.truck,
-                                      motorcycle = ros_msg_data.motorcycle,
-                                      bicycle    = ros_msg_data.bicycle,
-                                      pedestrian = ros_msg_data.pedestrian,
-                                      stationary = ros_msg_data.stationary,
-                                      other      = ros_msg_data.other)
+        self.car        = ros_msg_data.car
+        self.truck      = ros_msg_data.truck
+        self.motorcycle = ros_msg_data.motorcycle
+        self.bicycle    = ros_msg_data.bicycle
+        self.pedestrian = ros_msg_data.pedestrian
+        self.stationary = ros_msg_data.stacionary
+        self.other      = ros_msg_data.other
         return self
 
         pass

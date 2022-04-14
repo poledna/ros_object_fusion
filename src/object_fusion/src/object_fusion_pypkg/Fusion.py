@@ -269,7 +269,7 @@ class Fusion:
             elif sensor_object.new_object:
                 self.fusion_new_object(sensor_trust,
                                        sensor_property,
-                                       sensor_object.current_object,
+                                       sensor_object,
                                        sensor_updated.timestamp,
                                        sensor_index_which_needs_fusing)
                 self.logger.info(f"FUSION IF NEW OBJECT FROM SENSOR (AS PER ASSOCIATION)")
@@ -289,8 +289,8 @@ class Fusion:
     def time_penalizer(self):
         indexes_to_be_popped = []
         for object_index in self.globaltrack.tracked_objects:
-            prop_existence = self.globaltrack.tracked_objects[
-                object_index].current_fused_object.prop_existence
+            print(self.globaltrack.tracked_objects[object_index].current_fused_object)
+            prop_existence = self.globaltrack.tracked_objects[object_index].current_fused_object.prop_existence
 
             t = self.globaltrack.timestamp - \
                 self.globaltrack.tracked_objects[object_index].timestamp
@@ -316,16 +316,14 @@ class Fusion:
         prev_obj_aligned = temporal_and_spatial_alignment.align_obj(
             sensor_object.previous_object, self.egoveh, sensor_property, time)
 
-        Sensor_obj = SensorObject(sensor_object.current_object, sensor_property)
-        Sensor_obj.set_existance_probability_mass_factors()
-        Sensor_obj.set_classification_mass_factors()
+        sensor_object.set_existance_probability_mass_factors(sensor_property)
+        sensor_object.set_classification_mass_factors(sensor_property)
 
-        Global_obj = GlobalObject(globaltrack_predicted.current_fused_object)
-        Global_obj.set_existance_probability_mass_factors(sensor_trust)
-        Global_obj.existance_mass_prediction(0.01)
+        globaltrack_predicted.set_existance_probability_mass_factors(sensor_trust)
+        globaltrack_predicted.existance_mass_prediction(0.01)
 
         fused_classification = classification_fusion.ClassificationFusion.ClassificationFusion(
-            Sensor_obj, Global_obj)
+            sensor_object, globaltrack_predicted.current_fused_object)
         fused_classification.fuse()
 
         # FUSION IF NOT 1ST UPDATE OF THIS PARTICULAR SENSOR IN GLOBAL TRACK
@@ -339,10 +337,7 @@ class Fusion:
         else:
             [global_state, global_covariance] = state_and_covariance_fusion.cross_covariance_recursion_fusion(globaltrack_predicted.current_fused_object,
                                                                                                               sensor_object.current_object)
-
-        globaltrack_predicted.prop_existence = existence_fusion.fuse(
-            Sensor_obj, Global_obj)
-        globaltrack_predicted.prop_persistance = globaltrack_predicted.current_fused_object.prop_persistance
+        globaltrack_predicted.current_fused_object.prop_existence = existence_fusion.fuse(sensor_object, globaltrack_predicted.current_fused_object)
 
         globaltrack_predicted.current_fused_object.classification_mass = fused_classification.get_fused_classification_massfactors_list()
 
@@ -373,9 +368,8 @@ class Fusion:
         Sensor_obj.set_existance_probability_mass_factors()
         Sensor_obj.set_classification_mass_factors()
 
-        Global_obj = GlobalObject(globaltrack_predicted.current_fused_object)
-        Global_obj.set_existance_probability_mass_factors(sensor_trust)
-        Global_obj.existance_mass_prediction(0.01)
+        globaltrack_predicted.set_existance_probability_mass_factors(sensor_trust)
+        globaltrack_predicted.existance_mass_prediction(0.01)
 
         fused_classification = classification_fusion.ClassificationFusion.ClassificationFusion(
             Sensor_obj, Global_obj)
@@ -407,11 +401,10 @@ class Fusion:
                           time,
                           sensor_index_which_needs_fusing):
 
-        Sensor_obj = SensorObject(predict_obj, sensor_property)
-        Sensor_obj.set_existance_probability_mass_factors()
-        Sensor_obj.set_classification_mass_factors()
-
-        self.globaltrack.create_new_global_object(predict_obj,
+        predict_obj.set_existance_probability_mass_factors(sensor_property)
+        predict_obj.set_classification_mass_factors(sensor_property)
+        self.globaltrack.create_new_global_object(predict_obj.current_object,
                                                   [sensor_index_which_needs_fusing],
                                                   time,
-                                                  classification_mass=Sensor_obj.list_classification_mass_factor)
+                                                  classification_mass=
+                                                  predict_obj.current_object.classification_mass.list_classification_mass_factor)

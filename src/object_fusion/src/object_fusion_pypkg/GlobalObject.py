@@ -73,8 +73,7 @@ class GlobalObject:
 
         :param sensor:
         """
-
-
+        
         self.mass_existance = (self.persistance_probability * float(sensor_trust) * self.existance_probability)
         self.mass_nonexistance = (self.persistance_probability * float(sensor_trust) * (1 - self.existance_probability))
         self.mass_uncertainity = (1 - (float(self.mass_existance) + float(self.mass_nonexistance)))
