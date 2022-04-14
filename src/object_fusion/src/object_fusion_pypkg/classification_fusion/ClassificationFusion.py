@@ -60,10 +60,10 @@ class ClassificationFusion:
         self.fused_mass_factor_stationary = None
         self.fused_mass_factor_vehicle = None
         self.fused_mass_factor_vru = None
-        self. fused_mass_factor_traffic = None
-        self. fused_mass_factor_statvehicle = None
+        self.fused_mass_factor_traffic = None
+        self.fused_mass_factor_statvehicle = None
         self.fused_mass_factor_statvru = None
-        self. fused_mass_factor_ignorance = None
+        self.fused_mass_factor_ignorance = None
 
         self.fused_probability_car = None
         self.fused_probability_truck = None

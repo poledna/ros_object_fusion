@@ -14,6 +14,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from .ClassificationMass import ClassificationMass
+from .Classification import Classification 
+from .Dimension import Dimension 
+from .Geometric import Geometric 
+from .Features import Features 
+
 class Objects(object):
     """docstring for Objects"""
     def __init__(self):
@@ -42,18 +48,18 @@ class Objects(object):
 
     def from_ros_message(self, ros_msg_data):
         super(Objects, self).__init__()
-        self.obj_id = ros_msg_data.obj_id
+        self.object_id = self.obj_id = ros_msg_data.obj_id
         self.time = ros_msg_data.time
-        self.geometric = ros_msg_data.geometric
+        self.geometric = Geometric().from_ros_message(ros_msg_data.geometric)
         self.covariance = ros_msg_data.covariance
-        self.dimension =ros_msg_data. dimension
+        self.dimension = Dimension().from_ros_message(ros_msg_data.dimension)
         self.prop_existence = ros_msg_data.prop_existence
         self.prop_nonexistence = ros_msg_data.prop_nonexistence
         self.prop_persistance = ros_msg_data.prop_persistance
         self.prop_mov = ros_msg_data.prop_mov
-        self.classification = ros_msg_data.classification
-        self.classification_mass = ros_msg_data.classification_mass
-        self.features = ros_msg_data.features
+        self.classification = Classification().from_ros_message(ros_msg_data.classification)
+        self.classification_mass = ClassificationMass(ros_msg_data.classification_mass)
+        self.features = Features().from_ros_message(ros_msg_data.features)
         self.sensors_fused = ros_msg_data.sensors_fused
         return self
     
@@ -61,14 +67,14 @@ class Objects(object):
         from object_list.msg import ObjectList
         return ObjectList(self.fusion_id,
             self.time, 
-            self.geometric, 
+            self.geometric.to_ros_msg(), 
             self.covariance, 
-            self.dimension, 
+            self.dimension.to_ros_msg(), 
             self.prop_existence, 
             self.prop_nonexistence, 
             self.prop_persistance, 
             self.prop_mov,
-            self.classification, 
-            self.classification_mass,
+            self.classification.to_ros_msg(), 
+            self.classification_mass.to_ros_msg(),
             self.features, 
             self.sensors_fused)

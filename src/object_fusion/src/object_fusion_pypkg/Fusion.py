@@ -231,8 +231,7 @@ class Fusion:
         sensor_type = sensor_updated.sensor_property.sensortype
 
         # list of global object ids
-        global_ids = [
-            globaltrack_predicted[index].id for index in globaltrack_predicted.keys()]
+        global_ids = [globaltrack_predicted[index].id for index in globaltrack_predicted.keys()]
 
         prev_obj_ids = []
         for tracked_object in self.sensors[sensor_index_which_needs_fusing].tracked_objects.values():
@@ -412,5 +411,7 @@ class Fusion:
         Sensor_obj.set_existance_probability_mass_factors()
         Sensor_obj.set_classification_mass_factors()
 
-        self.globaltrack.create_new_global_object(predict_obj, [
-                                                  sensor_index_which_needs_fusing], time, classification_mass=Sensor_obj.list_classification_mass_factor)
+        self.globaltrack.create_new_global_object(predict_obj,
+                                                  [sensor_index_which_needs_fusing],
+                                                  time,
+                                                  classification_mass=Sensor_obj.list_classification_mass_factor)
