@@ -19,7 +19,7 @@ import numpy as np
 from scipy.stats import chi2
 from scipy.linalg import sqrtm
 from scipy.spatial import distance as di
-from object_fusion_msgs.msg import Geometric
+from ..ros2python.Geometric import Geometric
 
 def information_matrix_fusion(glob_pred_obj,prev_obj_aligned,predict_obj,sensor_id,sensortype):
     """

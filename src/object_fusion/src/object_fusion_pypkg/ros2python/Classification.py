@@ -18,7 +18,7 @@ class Classification(object):
                                                      motorcycle = self.motorcycle,
                                                      bicycle = self.bicycle,
                                                      pedestrian = self.pedestrian,
-                                                     stationary = self.stationary,
+                                                     stacionary = self.stationary,
                                                      other = self.other)
         pass
 

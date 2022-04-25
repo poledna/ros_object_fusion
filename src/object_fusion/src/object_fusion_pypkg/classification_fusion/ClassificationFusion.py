@@ -198,5 +198,5 @@ class ClassificationFusion:
                         motorcycle = self.fused_probability_motorcycle,
                            bicycle = self.fused_probability_bicycle,
                         pedestrian = self.fused_probability_pedestrian,
-                        stacionary = self.fused_probability_stationary,
+                        stationary = self.fused_probability_stationary,
                              other = self.fused_probability_other)

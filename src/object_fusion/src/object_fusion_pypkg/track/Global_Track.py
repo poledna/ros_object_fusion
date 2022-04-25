@@ -16,6 +16,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from .Tracked_Object import Tracked_Object
 from ..ros2python.Objects import Objects
+from ..ros2python.ClassificationMass import ClassificationMass
 
 class Global_Track():
     """docstring for Global_Track"""
@@ -40,7 +41,7 @@ class Global_Track():
     def create_new_global_object(self,fused_object:Objects,fusing_participants, timestamp ,new_object = False,classification_mass = 0):
         fused_object.fusion_id = self.latest_id
         self.tracked_objects[self.latest_id] = Fused_Object(fused_object,self.latest_id,fusing_participants,timestamp)
-        self.tracked_objects[self.latest_id].current_fused_object.classification_mass = classification_mass 
+        self.tracked_objects[self.latest_id].current_fused_object.classification_mass = ClassificationMass(classification_mass)
 
         self.latest_id += 1
 
@@ -99,9 +100,8 @@ class Fused_Object(object):
 
         :param sensor_trust
         """
-        print(type(self.current_fused_object))
-        self.current_fused_object.classification_mass.mass_existance    = (self.current_fused_object.classification_mass.persistance_probability * float(sensor_trust) * self.current_fused_object.classification_mass.existance_probability)
-        self.current_fused_object.classification_mass.mass_nonexistance = (self.current_fused_object.classification_mass.persistance_probability * float(sensor_trust) * (1 - self.current_fused_object.classification_mass.existance_probability))
+        self.current_fused_object.classification_mass.mass_existance    = (self.current_fused_object.prop_persistance * float(sensor_trust) * self.current_fused_object.prop_existence)
+        self.current_fused_object.classification_mass.mass_nonexistance = (self.current_fused_object.prop_persistance * float(sensor_trust) * (1 - self.current_fused_object.prop_existence))
         self.current_fused_object.classification_mass.mass_uncertainity = (1 - (float(self.current_fused_object.classification_mass.mass_existance) + float(self.current_fused_object.classification_mass.mass_nonexistance)))
 
         self.current_fused_object.classification_mass.list_existance_mass_factor = [self.current_fused_object.classification_mass.mass_existance, self.current_fused_object.classification_mass.mass_nonexistance, self.current_fused_object.classification_mass.mass_uncertainity]

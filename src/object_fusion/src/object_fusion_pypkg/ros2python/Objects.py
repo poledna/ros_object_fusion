@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from .ClassificationMass import ClassificationMass
+from .ClassificationMass import ClassificationMass 
 from .Classification import Classification 
 from .Dimension import Dimension 
 from .Geometric import Geometric 
@@ -64,8 +64,8 @@ class Objects(object):
         return self
     
     def to_ros_msg(self):
-        from object_list.msg import ObjectList
-        return ObjectList(self.fusion_id,
+        from object_fusion_msgs.msg import Detected_Object
+        return Detected_Object(self.fusion_id,
             self.time, 
             self.geometric.to_ros_msg(), 
             self.covariance, 

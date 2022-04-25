@@ -289,7 +289,6 @@ class Fusion:
     def time_penalizer(self):
         indexes_to_be_popped = []
         for object_index in self.globaltrack.tracked_objects:
-            print(self.globaltrack.tracked_objects[object_index].current_fused_object)
             prop_existence = self.globaltrack.tracked_objects[object_index].current_fused_object.prop_existence
 
             t = self.globaltrack.timestamp - \
@@ -323,7 +322,7 @@ class Fusion:
         globaltrack_predicted.existance_mass_prediction(0.01)
 
         fused_classification = classification_fusion.ClassificationFusion.ClassificationFusion(
-            sensor_object, globaltrack_predicted.current_fused_object)
+            sensor_object.current_object, globaltrack_predicted.current_fused_object)
         fused_classification.fuse()
 
         # FUSION IF NOT 1ST UPDATE OF THIS PARTICULAR SENSOR IN GLOBAL TRACK
@@ -337,9 +336,9 @@ class Fusion:
         else:
             [global_state, global_covariance] = state_and_covariance_fusion.cross_covariance_recursion_fusion(globaltrack_predicted.current_fused_object,
                                                                                                               sensor_object.current_object)
-        globaltrack_predicted.current_fused_object.prop_existence = existence_fusion.fuse(sensor_object, globaltrack_predicted.current_fused_object)
+        globaltrack_predicted.current_fused_object.prop_existence = existence_fusion.fuse(sensor_object.current_object, globaltrack_predicted.current_fused_object)
 
-        globaltrack_predicted.current_fused_object.classification_mass = fused_classification.get_fused_classification_massfactors_list()
+        globaltrack_predicted.current_fused_object.classification_mass = ClassificationMass(fused_classification.get_fused_classification_massfactors_list())
 
         globaltrack_predicted.current_fused_object.classification = fused_classification.get_classification_probabilities()
 
@@ -363,23 +362,25 @@ class Fusion:
 
         [global_state, global_covariance] = state_and_covariance_fusion.cross_covariance_recursion_fusion(globaltrack_predicted.current_fused_object,
                                                                                                           sensor_object.current_object)
+        sensor_object = track.Tracked_Object(globaltrack_predicted.current_fused_object.obj_id,
+                                          globaltrack_predicted.current_fused_object,
+                                          globaltrack_predicted.current_fused_object.time,
+                                          globaltrack_predicted.current_fused_object.sensors_fused)
 
-        Sensor_obj = SensorObject(globaltrack_predicted.current_fused_object, sensor_property)
-        Sensor_obj.set_existance_probability_mass_factors()
-        Sensor_obj.set_classification_mass_factors()
+        sensor_object.set_existance_probability_mass_factors(sensor_property)
+        sensor_object.set_classification_mass_factors(sensor_property)
 
         globaltrack_predicted.set_existance_probability_mass_factors(sensor_trust)
         globaltrack_predicted.existance_mass_prediction(0.01)
 
         fused_classification = classification_fusion.ClassificationFusion.ClassificationFusion(
-            Sensor_obj, Global_obj)
+            sensor_object.current_object, globaltrack_predicted.current_fused_object)
         fused_classification.fuse()
 
-        globaltrack_predicted.current_fused_object.prop_existence = existence_fusion.fuse(
-            Sensor_obj, Global_obj)
+        globaltrack_predicted.current_fused_object.prop_existence = existence_fusion.fuse(sensor_object.current_object, globaltrack_predicted.current_fused_object)
         globaltrack_predicted.current_fused_object.prop_persistance = globaltrack_predicted.current_fused_object.prop_persistance
 
-        globaltrack_predicted.current_fused_object.classification_mass = fused_classification.get_fused_classification_massfactors_list()
+        globaltrack_predicted.current_fused_object.classification_mass = ClassificationMass(fused_classification.get_fused_classification_massfactors_list())
 
         globaltrack_predicted.current_fused_object.classification = fused_classification.get_classification_probabilities()
 

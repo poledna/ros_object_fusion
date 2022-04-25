@@ -19,7 +19,7 @@ import numpy as np
 from scipy.stats import chi2
 from scipy.linalg import sqrtm
 from scipy.spatial import distance as di
-from object_fusion_msgs.msg import Geometric
+from ..ros2python.Geometric import Geometric
 
 def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
     "Function to perform cross covariance recursion fusion on object list "
