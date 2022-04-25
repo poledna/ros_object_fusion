@@ -1,7 +1,4 @@
 from .Callback_Handler import Callback_Handler
-from .GlobalObject import GlobalObject
-from .SensorObject import SensorObject
-
 
 from object_fusion_pypkg.classification_fusion import *
 from object_fusion_pypkg.ego_state import *
