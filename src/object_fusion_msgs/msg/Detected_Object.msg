@@ -1,6 +1,6 @@
 int32 obj_id
 float64 time
-Geometric geometric
+State geometric
 float64[36] covariance
 Dimension dimension
 float64 prop_existence
