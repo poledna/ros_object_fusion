@@ -6,7 +6,7 @@ This package make the fusion by the proposed Aeberhard Algorithm. It is ROS unaw
 
 An UML like diagram can be seen below:
 
-[alt text](diagrams/object_fusion_uml.png)
+![UML like diagram](diagrams/object_fusion_uml.png)
 
 
 ## Authors
