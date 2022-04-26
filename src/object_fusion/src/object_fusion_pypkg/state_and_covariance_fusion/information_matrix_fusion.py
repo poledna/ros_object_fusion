@@ -19,7 +19,7 @@ import numpy as np
 from scipy.stats import chi2
 from scipy.linalg import sqrtm
 from scipy.spatial import distance as di
-from ..ros2python.Geometric import Geometric
+from ..ros2python.State import State
 
 def information_matrix_fusion(glob_pred_obj,prev_obj_aligned,predict_obj,sensor_id,sensortype):
     """
@@ -68,7 +68,7 @@ def information_matrix_fusion(glob_pred_obj,prev_obj_aligned,predict_obj,sensor_
         (glob_pred_obj_inv.dot(global_state_matrix)) + (sensor_covarience_matrix_inv.dot(sensor_state_matrix))
         - previous_sensor_covarience_matrix_inv.dot(previous_sensor_state_matrix))
 
-    return [Geometric(x  = float(fused_state_matrix[0]),
+    return [State(x  = float(fused_state_matrix[0]),
                       vx = float(fused_state_matrix[1]),
                       ax = float(fused_state_matrix[2]),
                       y  = float(fused_state_matrix[3]),

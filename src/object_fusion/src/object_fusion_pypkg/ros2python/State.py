@@ -1,9 +1,9 @@
 import object_fusion_msgs.msg
 
-class Geometric(object):
-    """Geometric is a struct to hold Geometric Data."""
+class State(object):
+    """State is a struct to hold State Data."""
     def __init__(self,x=0,y=0,vx=0,vy=0,ax=0,ay=0,yaw=0):
-        super(Geometric, self).__init__()
+        super(State, self).__init__()
         self.x = x
         self.y = y
         self.vx = vx
@@ -13,7 +13,7 @@ class Geometric(object):
         self.yaw = yaw
 
     def to_ros_msg(self):
-        return object_fusion_msgs.msg.Geometric(x = self.x,
+        return object_fusion_msgs.msg.State(x = self.x,
                                                      y = self.y,
                                                      vx = self.vx,
                                                      vy = self.vy,

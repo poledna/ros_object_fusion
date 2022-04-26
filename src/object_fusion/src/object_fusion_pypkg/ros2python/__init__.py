@@ -3,5 +3,5 @@ from .Sensor_Property import Sensor_Property
 from .ClassificationMass import ClassificationMass
 from .Classification import Classification 
 from .Dimension import Dimension 
-from .Geometric import Geometric 
+from .State import State 
 from .Features import Features 

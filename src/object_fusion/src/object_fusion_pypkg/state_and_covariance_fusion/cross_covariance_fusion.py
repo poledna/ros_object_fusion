@@ -19,7 +19,7 @@ import numpy as np
 from scipy.stats import chi2
 from scipy.linalg import sqrtm
 from scipy.spatial import distance as di
-from ..ros2python.Geometric import Geometric
+from ..ros2python.State import State
 
 def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
     "Function to perform cross covariance recursion fusion on object list "
@@ -45,7 +45,7 @@ def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
     fused_state_matrix = fused_covarience_matrix.dot(
         (global_covariance_inv.dot(global_state_matrix)) + (sensor_covariance_inv.dot(sensor_state_matrix)))
 
-    return [Geometric(x  = float(fused_state_matrix[0]),
+    return [State(x  = float(fused_state_matrix[0]),
                       vx = float(fused_state_matrix[1]),
                       ax = float(fused_state_matrix[2]),
                       y  = float(fused_state_matrix[3]),

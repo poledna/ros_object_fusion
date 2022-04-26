@@ -53,7 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
    Dimension.msg
    Dimension3d.msg
    Features.msg
-   Geometric.msg
+   State.msg
    Moving_Object.msg
    Object_List.msg
    Orientation3d.msg

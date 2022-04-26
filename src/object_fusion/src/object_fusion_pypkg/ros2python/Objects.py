@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from .ClassificationMass import ClassificationMass 
 from .Classification import Classification 
 from .Dimension import Dimension 
-from .Geometric import Geometric 
+from .State import State 
 from .Features import Features 
 
 class Objects(object):
@@ -50,7 +50,7 @@ class Objects(object):
         super(Objects, self).__init__()
         self.object_id = self.obj_id = ros_msg_data.obj_id
         self.time = ros_msg_data.time
-        self.geometric = Geometric().from_ros_message(ros_msg_data.geometric)
+        self.geometric = State().from_ros_message(ros_msg_data.geometric)
         self.covariance = ros_msg_data.covariance
         self.dimension = Dimension().from_ros_message(ros_msg_data.dimension)
         self.prop_existence = ros_msg_data.prop_existence
