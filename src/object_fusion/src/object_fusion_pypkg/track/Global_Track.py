@@ -25,7 +25,6 @@ class Global_Track():
         self.tracked_objects = {}
         self.sensor_property = 0
         self.latest_object_id = 0
-        self.classification_mass =0
         self.timestamp = 0 
         self.latest_id = 1 
 
