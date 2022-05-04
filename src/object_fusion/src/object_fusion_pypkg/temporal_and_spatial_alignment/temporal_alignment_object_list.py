@@ -57,11 +57,11 @@ def align_list(track,egoveh,t):
                       [-t * np.sin(yaw), 0, t * np.cos(yaw), 0]])
 
         eta_s = np.array([[10],[0],[10] ,[0]])
-        id = np.zeros((6, 6))
-        np.fill_diagonal(id, 20) # fusion process noise = 20
+        
+        fusion_process_noise = 20
         covariance = np.reshape(obj.covariance,(6,6))
         predicted_state = a.dot(state) + b.dot(u)
-        predicted_covariance = (a.dot(covariance)).dot(a.transpose())+ id
+        predicted_covariance = (a.dot(covariance)).dot(a.transpose())+ (np.eye(6)*fusion_process_noise)
 
         obj.covariance = predicted_covariance.flatten()
 

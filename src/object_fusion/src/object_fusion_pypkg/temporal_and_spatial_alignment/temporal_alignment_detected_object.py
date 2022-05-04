@@ -26,10 +26,7 @@ def align_obj(ob,egoveh,sensor_property,t):
 
     now = rospy.Time.now()
     obj = ob
-
-    id = np.zeros((6, 6))
-    np.fill_diagonal(id, 10)
-
+    
     yaw = egoveh.newyaw
 
     state = np.array([[float(obj.geometric.x)], [float(obj.geometric.vx)], [float(obj.geometric.ax)], [float(obj.geometric.y)], [float(obj.geometric.vy)],[float(obj.geometric.ay)]])
@@ -63,7 +60,7 @@ def align_obj(ob,egoveh,sensor_property,t):
 
     predicted_state = a.dot(state) + b.dot(u)
 
-    predicted_covariance = (a.dot(covariance)).dot(a.transpose()) + id
+    predicted_covariance = (a.dot(covariance)).dot(a.transpose()) + np.eye(6)
     obj.covariance = predicted_covariance.flatten()
 
     return obj

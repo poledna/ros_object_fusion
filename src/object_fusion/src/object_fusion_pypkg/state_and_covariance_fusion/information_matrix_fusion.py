@@ -29,16 +29,14 @@ def information_matrix_fusion(glob_pred_obj,prev_obj_aligned,predict_obj,sensor_
     global_state_matrix = np.array([[float(glob_pred_obj.geometric.x)] , [float(glob_pred_obj.geometric.vx)],
                                     [float(glob_pred_obj.geometric.ax)], [float(glob_pred_obj.geometric.y)],
                                     [float(glob_pred_obj.geometric.vy)], [float(glob_pred_obj.geometric.ay)]])
-    _id = np.zeros((6, 6))
-    np.fill_diagonal(_id, 1)
-    global_cvarience_matrix = np.reshape(glob_pred_obj.covariance, (6, 6)) + _id
-    id2 = np.zeros((6,6))
+    
+    global_cvarience_matrix = np.reshape(glob_pred_obj.covariance, (6, 6)) + np.eye(6)
 
     sensor_state_matrix = np.array([[float(predict_obj.geometric.x)], [float(predict_obj.geometric.vx)],
                                          [float(predict_obj.geometric.ax)],
                                          [float(predict_obj.geometric.y)], [float(predict_obj.geometric.vy)],
                                          [float(predict_obj.geometric.ay)]])
-    sensor_covarience_matrix = np.reshape(predict_obj.covariance, (6, 6))#+id2
+    sensor_covarience_matrix = np.reshape(predict_obj.covariance, (6, 6))
 
     previous_sensor_state_matrix = np.array(
                                         [[float(prev_obj_aligned.geometric.x)], [float(prev_obj_aligned.geometric.vx)],
