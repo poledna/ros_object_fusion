@@ -46,9 +46,9 @@ def cross_covariance_recursion_fusion(glob_pred_obj,predict_obj):
         (global_covariance_inv.dot(global_state_matrix)) + (sensor_covariance_inv.dot(sensor_state_matrix)))
 
     return [State(x  = float(fused_state_matrix[0]),
-                      vx = float(fused_state_matrix[1]),
-                      ax = float(fused_state_matrix[2]),
-                      y  = float(fused_state_matrix[3]),
-                      vy = float(fused_state_matrix[4]),
-                      ay = float(fused_state_matrix[5])),
+                  vx = float(fused_state_matrix[1]),
+                  ax = float(fused_state_matrix[2]),
+                  y  = float(fused_state_matrix[3]),
+                  vy = float(fused_state_matrix[4]),
+                  ay = float(fused_state_matrix[5])),
             fused_covarience_matrix]

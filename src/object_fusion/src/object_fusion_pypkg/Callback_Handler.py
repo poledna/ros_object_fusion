@@ -24,8 +24,6 @@ from .ros2python.Sensor_Property import Sensor_Property
 from .track.Sensor_Track import Sensor_Track
 from .ros2python.Objects import Objects
 
-
-
 class Callback_Handler(object):
     def __init__(self, publisher_fused_data, state_and_covariance_fusion):
         super(Callback_Handler, self).__init__()

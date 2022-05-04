@@ -70,8 +70,7 @@ class Fusion:
         while not assignment_complete:
 
             if -9999 in assignment_matrix:
-                not_assigned_object_index = np.where(
-                    assignment_matrix == -9999)[1]
+                not_assigned_object_index = np.where(assignment_matrix == -9999)[1]
                 sensor_object_index = not_assigned_object_index[0]
 
                 sensor_object_benifit = cost_matrix[sensor_object_index] - bid_price
