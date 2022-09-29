@@ -341,6 +341,10 @@ class Fusion:
 
         globaltrack_predicted.current_fused_object.classification = fused_classification.get_classification_probabilities()
 
+
+        global_state.yaw = sensor_object.current_object.geometric.yaw
+
+
         globaltrack_predicted.current_fused_object.geometric = global_state
         globaltrack_predicted.current_fused_object.covariance = global_covariance.flatten()
 
@@ -382,6 +386,10 @@ class Fusion:
         globaltrack_predicted.current_fused_object.classification_mass = ClassificationMass(fused_classification.get_fused_classification_massfactors_list())
 
         globaltrack_predicted.current_fused_object.classification = fused_classification.get_classification_probabilities()
+
+
+        global_state.yaw = sensor_object.current_object.geometric.yaw
+
 
         globaltrack_predicted.current_fused_object.geometric = global_state
         globaltrack_predicted.current_fused_object.covariance = global_covariance.flatten()
