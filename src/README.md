@@ -1,4 +1,4 @@
-# sensor_fusion_aeberhard
+# sensor_fusion
 """
 Copyright (C) 2022 Yuri Poledna and Fabio Reway and Redge Castelino and Maikol Drechsler and Shashank Harthi
 
