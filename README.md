@@ -41,14 +41,14 @@ The fusion input in this example uses two subscribers, but it is not limited to 
 
 (TO DO:)In case you use this code, please cite it with: 
 ```
-@inproceedings{Poledna2022,
-	doi = {10.1109/PlaceHolding},
+@inproceedings{Poledna.2022,
+	doi = {10.1109/CONISOFT55708.2022.00031},
 	url = {},
 	year = 2022,
 	month = {},
 	publisher = {},
 	author = {Yuri Poledna and Fabio Reway and Redge Castelino and Maikol Drechsler and Shashank Harthi},
-	title = {Placeholding},
-	booktitle = {Placeholding for now}
+	title = {},
+	booktitle = {IEEE CONISOFT'22}
 }
 ```
