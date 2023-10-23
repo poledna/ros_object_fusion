@@ -41,14 +41,13 @@ The fusion input in this example uses two subscribers, but it is not limited to 
 
 (TO DO:)In case you use this code, please cite it with: 
 ```
-@inproceedings{Poledna.2022,
-	doi = {10.1109/CONISOFT55708.2022.00031},
-	url = {},
-	year = 2022,
-	month = {},
-	publisher = {},
-	author = {Yuri Poledna and Fabio Reway and Redge Castelino and Maikol Drechsler and Shashank Harthi},
-	title = {},
-	booktitle = {IEEE CONISOFT'22}
-}
+@INPROCEEDINGS{10066615,
+  author={Poledna, Yuri and Reway, Fabio and Drechsler, Maikol Funk and Huber, Werner and Icking, Christian and Ribeiro, Eduardo Parente},
+  booktitle={2022 10th International Conference in Software Engineering Research and Innovation (CONISOFT)}, 
+  title={An Open-Source High-Level Fusion Algorithm in ROS for Automated Driving Applications}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={174-181},
+  doi={10.1109/CONISOFT55708.2022.00031}}
 ```
